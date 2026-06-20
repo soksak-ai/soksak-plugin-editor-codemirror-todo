@@ -1,19 +1,19 @@
 {
   "spec": "soksak-spec-plugin@0.0.1",
-  "id": "soksak-plugin-code-highlight",
+  "id": "soksak-plugin-editor-codemirror-todo",
   "name": {
-    "en": "Code Highlight+",
-    "ko": "코드 하이라이트+"
+    "en": "CodeMirror TODO highlight",
+    "ko": "코드미러 TODO 강조"
   },
   "version": "0.0.1",
-  "repo": "https://github.com/soksak-ai/soksak-plugin-code-highlight.git",
+  "repo": "https://github.com/soksak-ai/soksak-plugin-editor-codemirror-todo.git",
   "description": {
-    "en": "Highlights TODO/FIXME/XXX tokens and maps mjs/cjs/svelte extensions to syntax modes, via the editor plugin's extension protocol.",
-    "ko": "TODO/FIXME/XXX 토큰 강조 + mjs/cjs/svelte 확장자 문법 매핑 — 에디터 플러그인의 확장 프로토콜 경유."
+    "en": "CodeMirror extension: highlights TODO/FIXME/XXX tokens and maps mjs/cjs/svelte extensions to syntax modes, via the editor plugin's extension protocol.",
+    "ko": "코드미러 확장: TODO/FIXME/XXX 토큰 강조 + mjs/cjs/svelte 확장자 문법 매핑 — 에디터 플러그인의 확장 프로토콜 경유."
   },
   "entry": "main.js",
   "dependencies": {
-    "soksak-plugin-editor": "*"
+    "soksak-plugin-editor-codemirror": "*"
   },
   "permissions": []
 }

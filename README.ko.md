@@ -1,39 +1,30 @@
-# 코드 하이라이트+ (`soksak-plugin-code-highlight`)
+# soksak-plugin-editor-codemirror-todo
 
-에디터 확장(CM6) 레퍼런스 예제 플러그인.
+soksak CodeMirror 확장: `TODO` / `FIXME` / `XXX` 토큰 강조 + 일부 확장자 문법 매핑.
+`soksak-plugin-editor-codemirror`의 확장이며 단독 플러그인이 아닙니다.
 
 ## 무엇
 
-- 열린 모든 파일에서 `TODO` / `FIXME` / `XXX` 토큰을 강조 표시합니다
-  (accent 색 기반 반투명 배경 + 외곽선 — 현재 테마를 따라갑니다).
-- 확장자 문법 매핑을 추가합니다: `.mjs`, `.cjs` → `js`(javascript), `.svelte` → html.
-  매핑은 `plugin.json` 의 `contributes.languages` 선언만으로 자동 적용됩니다 — 코드 없음.
+- 열린 모든 파일에서 `TODO` / `FIXME` / `XXX` 토큰 강조(accent 색 반투명 배경 + 외곽선 —
+  현재 테마 추종).
+- 확장자 문법 매핑: `.mjs`, `.cjs` → `js`, `.svelte` → `html`.
 
-뷰·명령·포매터는 없습니다. `activate` 에서 전역 CodeMirror 확장 하나를
-`app.editor.registerExtension` 으로 등록하는 것이 전부입니다.
+엔진은 `soksak-plugin-editor-codemirror`가 소유합니다(엔진 중립, 계약 A13). 이 플러그인은
+에디터의 확장 프로토콜(`app.bus`의 `editor.ext.register`)로 등록합니다 — `editor.ext.ready`
+페이로드로 넘어온 모듈로 CodeMirror 확장을 만들고, `hello`→`ready` 핸드셰이크로 활성화 순서를 처리.
 
-## 권한 근거
+## 의존성
 
-| 권한 | 근거 |
-|------|------|
-| `editor` | CM6 확장 등록(`registerExtension`) + `contributes.languages` 문법 매핑에 필수 |
+`soksak-plugin-editor-codemirror` — CodeMirror 엔진·모듈·확장 프로토콜 제공. 이 플러그인을 켜면
+스켈레톤이 의존성을 해소합니다.
 
-다른 권한은 선언하지 않습니다 — 파일/네트워크/명령 접근 없음.
+## 권한
 
-## 설치
-
-```
-sok plugin.install source=<user>/<repo-soksak-plugin-code-highlight>
-# 또는 로컬 경로로
-sok plugin.install source=/path/to/examples/plugins/soksak-plugin-code-highlight
-```
-
-설치 후 앱의 플러그인 화면에서 동의 후 활성화하세요(원격 `plugin.enable` 은
-기록된 동의 없이는 `CONSENT_REQUIRED` 로 거부됩니다).
+없음. 확장 프로토콜은 `app.bus`(플러그인 간 pub/sub)를 타며 권한이 필요 없습니다.
 
 ## 사용법
 
-1. 활성화하면 열려 있는 에디터에 즉시 반영됩니다 — `TODO`/`FIXME`/`XXX` 가
-   강조되고, `.mjs`/`.cjs` 파일이 javascript 로, `.svelte` 가 html 로 하이라이팅됩니다.
-2. 비활성화하면 강조와 문법 매핑이 즉시 제거됩니다(호스트가 등록을 자동 수거).
-3. 단어 경계만 매치하므로 `TODOLIST` 같은 식별자 일부는 강조되지 않습니다.
+1. `soksak-plugin-editor-codemirror`(의존성 자동 해소)와 이 플러그인을 활성화합니다.
+2. 아무 파일이나 열면 `TODO`/`FIXME`/`XXX`가 강조되고 `.mjs`/`.cjs`는 JavaScript, `.svelte`는
+   HTML로 처리됩니다. 단어 경계만 매치(`TODOLIST`는 미강조).
+3. 비활성화하면 강조·매핑이 즉시 제거됩니다.

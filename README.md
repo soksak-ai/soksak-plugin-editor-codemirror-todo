@@ -1,43 +1,33 @@
-# Code Highlight+ (`soksak-plugin-code-highlight`)
+# soksak-plugin-editor-codemirror-todo
 
-A reference example plugin for editor extensions (CM6).
+A CodeMirror extension for soksak: highlights `TODO` / `FIXME` / `XXX` tokens and maps a
+few extensions to syntax modes. It is an extension of `soksak-plugin-editor-codemirror`,
+not a standalone plugin.
 
 ## What It Does
 
-- Highlights `TODO` / `FIXME` / `XXX` tokens in all open files
-  (semi-transparent background + outline based on the accent color — follows the current
-  theme).
-- Adds extension-to-syntax mappings: `.mjs`, `.cjs` → `js` (javascript), `.svelte` →
-  html. Mappings are applied automatically through `contributes.languages` declarations
-  in `plugin.json` alone — no code required.
+- Highlights `TODO` / `FIXME` / `XXX` tokens in all open files (semi-transparent background
+  + outline from the accent color — follows the current theme).
+- Maps extensions to syntax modes: `.mjs`, `.cjs` → `js`, `.svelte` → `html`.
 
-No views, commands, or formatters. The entire implementation is a single global
-CodeMirror extension registered via `app.editor.registerExtension` in `activate`.
+The engine is owned by `soksak-plugin-editor-codemirror` (engine neutrality, contract A13).
+This plugin registers through the editor's extension protocol on `app.bus`
+(`editor.ext.register` with a CodeMirror extension built from the modules handed over in
+the `editor.ext.ready` payload; a `hello`→`ready` handshake covers activation order).
 
-## Permission Rationale
+## Dependencies
 
-| Permission | Reason |
-|------|------|
-| `editor` | Required for CM6 extension registration (`registerExtension`) and `contributes.languages` syntax mapping |
+`soksak-plugin-editor-codemirror` — provides the CodeMirror engine, modules, and the
+extension protocol. The skeleton resolves this dependency when this plugin is enabled.
 
-No other permissions are declared — no file, network, or command access.
+## Permissions
 
-## Installation
-
-```
-sok plugin.install source=<user>/<repo-soksak-plugin-code-highlight>
-# or via local path
-sok plugin.install source=/path/to/examples/plugins/soksak-plugin-code-highlight
-```
-
-After installation, activate through the app's plugin screen after granting consent
-(remote `plugin.enable` without recorded consent is rejected with `CONSENT_REQUIRED`).
+None. The extension protocol rides on `app.bus` (plugin-to-plugin pub/sub), which needs no
+permission.
 
 ## Usage
 
-1. Once activated, the effect applies immediately to open editors — `TODO`/`FIXME`/`XXX`
-   are highlighted, `.mjs`/`.cjs` files are treated as javascript, and `.svelte` is
-   highlighted as html.
-2. Deactivating removes the highlighting and syntax mappings immediately (the host
-   automatically reclaims the registration).
-3. Only word boundaries are matched, so identifiers like `TODOLIST` are not highlighted.
+1. Enable `soksak-plugin-editor-codemirror` (auto-resolved as a dependency) and this plugin.
+2. Open any file — `TODO`/`FIXME`/`XXX` are highlighted; `.mjs`/`.cjs` are treated as
+   JavaScript, `.svelte` as HTML. Only word boundaries match (so `TODOLIST` is not hit).
+3. Disabling removes the highlighting and mappings immediately.
