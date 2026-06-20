@@ -8,27 +8,12 @@
   "version": "0.0.1",
   "repo": "https://github.com/soksak-ai/soksak-plugin-code-highlight.git",
   "description": {
-    "en": "Highlights TODO/FIXME/XXX tokens + maps mjs/cjs/svelte extensions to syntax modes.",
-    "ko": "TODO/FIXME/XXX 토큰 강조 + mjs/cjs/svelte 확장자 문법 매핑"
+    "en": "Highlights TODO/FIXME/XXX tokens and maps mjs/cjs/svelte extensions to syntax modes, via the editor plugin's extension protocol.",
+    "ko": "TODO/FIXME/XXX 토큰 강조 + mjs/cjs/svelte 확장자 문법 매핑 — 에디터 플러그인의 확장 프로토콜 경유."
   },
   "entry": "main.js",
-  "permissions": [
-    "editor"
-  ],
-  "contributes": {
-    "languages": [
-      {
-        "ext": "mjs",
-        "lang": "js"
-      },
-      {
-        "ext": "cjs",
-        "lang": "js"
-      },
-      {
-        "ext": "svelte",
-        "lang": "html"
-      }
-    ]
-  }
+  "dependencies": {
+    "soksak-plugin-editor": "*"
+  },
+  "permissions": []
 }
