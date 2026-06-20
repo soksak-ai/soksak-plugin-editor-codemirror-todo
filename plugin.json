@@ -1,10 +1,16 @@
 {
   "spec": "soksak-spec-plugin@0.0.1",
   "id": "soksak-plugin-code-highlight",
-  "name": "코드 하이라이트+",
+  "name": {
+    "en": "Code Highlight+",
+    "ko": "코드 하이라이트+"
+  },
   "version": "0.0.1",
   "repo": "https://github.com/soksak-ai/soksak-plugin-code-highlight.git",
-  "description": "TODO/FIXME/XXX 토큰 강조 + mjs/cjs/svelte 확장자 문법 매핑",
+  "description": {
+    "en": "Highlights TODO/FIXME/XXX tokens + maps mjs/cjs/svelte extensions to syntax modes.",
+    "ko": "TODO/FIXME/XXX 토큰 강조 + mjs/cjs/svelte 확장자 문법 매핑"
+  },
   "entry": "main.js",
   "permissions": [
     "editor"
