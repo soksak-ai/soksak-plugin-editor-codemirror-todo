@@ -3,13 +3,12 @@
   "id": "soksak-plugin-editor-codemirror-todo",
   "name": {
     "en": "CodeMirror TODO highlight",
-    "ko": "코드미러 TODO 강조"
+    "ko": "\ucf54\ub4dc\ubbf8\ub7ec TODO \uac15\uc870"
   },
   "version": "0.0.1",
-  "repo": "https://github.com/soksak-ai/soksak-plugin-editor-codemirror-todo.git",
   "description": {
     "en": "CodeMirror extension: highlights TODO/FIXME/XXX tokens and maps mjs/cjs/svelte extensions to syntax modes, via the editor plugin's extension protocol.",
-    "ko": "코드미러 확장: TODO/FIXME/XXX 토큰 강조 + mjs/cjs/svelte 확장자 문법 매핑 — 에디터 플러그인의 확장 프로토콜 경유."
+    "ko": "\ucf54\ub4dc\ubbf8\ub7ec \ud655\uc7a5: TODO/FIXME/XXX \ud1a0\ud070 \uac15\uc870 + mjs/cjs/svelte \ud655\uc7a5\uc790 \ubb38\ubc95 \ub9e4\ud551 \u2014 \uc5d0\ub514\ud130 \ud50c\ub7ec\uadf8\uc778\uc758 \ud655\uc7a5 \ud504\ub85c\ud1a0\ucf5c \uacbd\uc720."
   },
   "entry": "main.js",
   "dependencies": {
